@@ -29,7 +29,7 @@ public class Client  {
         SecretKey key = generateKeyFromPassword(k);
         System.out.println("Enter Username");
         String username = scanner.nextLine();
-        Socket socket = new Socket (ip, 2222);
+        Socket socket = new Socket (ip, 22222);
         Client client = new Client(socket, username,key);
         client.listenForMessage();
         client.sendMessage();

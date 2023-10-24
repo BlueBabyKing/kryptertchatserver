@@ -9,10 +9,9 @@ public class Server {
     private final ServerSocket serverSocket;
 
     public static void main(String[] args) throws IOException {
-    ServerSocket serverSocket = new ServerSocket(2222);
+    ServerSocket serverSocket = new ServerSocket(22222);
     Server server = new Server(serverSocket);
     server.startServer();
-    System.out.println("Server Successfully Started");
     }
 
     public Server(ServerSocket serverSocket) {
@@ -20,6 +19,7 @@ public class Server {
     }
 
     public void startServer(){
+        System.out.println("Server Successfully Started");
         try{
             while(!serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
