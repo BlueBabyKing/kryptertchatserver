@@ -7,9 +7,11 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
 
 public class Client  {
 
@@ -20,19 +22,26 @@ public class Client  {
     private SecretKey key;
 
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter IPv4, Or Write localhost");
-        String ip = scanner.nextLine();
-        System.out.println("Enter key");
-        String k = scanner.nextLine();
-        //String k = "asd";
-        SecretKey key = generateKeyFromPassword(k);
-        System.out.println("Enter Username");
-        String username = scanner.nextLine();
-        Socket socket = new Socket (ip, 2222);
-        Client client = new Client(socket, username,key);
-        client.listenForMessage();
-        client.sendMessage();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter IPv4, Or Write localhost");
+            String ip = scanner.nextLine();
+            System.out.println("Enter Password");
+            String k = scanner.nextLine();
+            //String k = "asd";
+            SecretKey key = generateKeyFromPassword(k);
+            System.out.println("Enter Username");
+            String username = scanner.nextLine();
+            Socket socket = new Socket(ip, 2222);
+            Client client = new Client(socket, username, key);
+            client.listenForMessage();
+            client.sendMessage();
+        }catch (TimeoutException e){
+            System.out.println("Connection timed out: " + e.getMessage());
+        }catch (SocketException e){
+            System.out.println("Socket Error: " + e.getMessage());
+
+        }
     }
 
     public Client(Socket socket,String username,SecretKey key ){
