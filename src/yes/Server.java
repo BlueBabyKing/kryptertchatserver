@@ -9,7 +9,7 @@ public class Server {
     private final ServerSocket serverSocket;
 
     public static void main(String[] args) throws IOException {
-    ServerSocket serverSocket = new ServerSocket(22222);
+    ServerSocket serverSocket = new ServerSocket(2222);
     Server server = new Server(serverSocket);
     server.startServer();
     }
