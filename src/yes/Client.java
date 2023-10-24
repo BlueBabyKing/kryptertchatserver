@@ -23,9 +23,9 @@ public class Client  {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter IPv4, Or Write localhost");
         String ip = scanner.nextLine();
-        //System.out.println("Enter key");
-        //String almostkey = scanner.nextLine();
-        String k = "asd";
+        System.out.println("Enter key");
+        String k = scanner.nextLine();
+        //String k = "asd";
         SecretKey key = generateKeyFromPassword(k);
         System.out.println("Enter Username");
         String username = scanner.nextLine();

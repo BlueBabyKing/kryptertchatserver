@@ -12,6 +12,7 @@ public class Server {
     ServerSocket serverSocket = new ServerSocket(2222);
     Server server = new Server(serverSocket);
     server.startServer();
+    System.out.println("Server Successfully Started");
     }
 
     public Server(ServerSocket serverSocket) {
